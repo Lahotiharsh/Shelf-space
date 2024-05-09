@@ -2,9 +2,6 @@ import React , { useContext } from 'react'
 import Operators from './Operators'
 import BookModal from "./BookModal";
 import AppContext from "../utils/AppContext";
-
-
-
 export default function Tabular({ books }) {
   const { showModal, setShowModal } = useContext(AppContext);
   return (
