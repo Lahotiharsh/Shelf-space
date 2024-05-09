@@ -1,14 +1,9 @@
 import express from "express";
 import { Book } from "../models/bookmodel.js";
 
-// const app = express();
-// app.use(express.json());
 const router  = express.Router();
 
-/// now create its middleware in sever file  and specify default routing prefix  to "/books" and remove /books from here belows...
-
-//route to save a new 
-router.post('/',async(req,res)=>{  // yeh jo req hai ye iss case mai post request hai client side se
+router.post('/',async(req,res)=>{  
     try {
         if( !req.body.title || !req.body.author || !req.body.publishYear ){
             return res.status(400).send({ message: "Send all requiredfields : title, author, publishYear"})
@@ -30,10 +25,9 @@ router.post('/',async(req,res)=>{  // yeh jo req hai ye iss case mai post reques
     }
 })
 
-// route to get all books from database
 router.get("/",async(req,res)=>{
     try {      
-        const books = await Book.find();           //{title: "gods"});
+        const books = await Book.find();           
         return res.status(201).send({
             count: books.length,
             data : books,
@@ -43,9 +37,6 @@ router.get("/",async(req,res)=>{
         res.status(500).send({message:error.message})
     }
 })
-
-// route to get all books from database by id
-// to include parameter in route we use :
 router.get("/:id",async(req,res)=>{ 
     try {      
 
